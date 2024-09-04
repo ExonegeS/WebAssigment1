@@ -68,7 +68,7 @@ class Particle {
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx*dx + dy*dy);
         
-        if (distance < mouse.radius + this.size && this.push) {
+        if (distance < mouse.radius + this.size && this.push && this.decaying) {
             if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
                 this.x += 0
             }
@@ -117,11 +117,18 @@ function animate() {
     requestAnimationFrame(animate)
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     var time = Date.now();
+    // map each value size if time < 5s
+    particlesArray = particlesArray.map(function(item){
+        if (time - item.time > 1000 * 15) {
+            item.decaying = false
+        }
+        return item
+    })
     particlesArray = particlesArray.filter(function(item) {
         // Delete if time of creation > 5s
         return item.size > 0.1;
     });
-    
+    particlesArray.red
     particlesArrayCursor = particlesArrayCursor.filter(function(item) {
         // Delete if time of creation > 5s
         return item.size > 0.1;

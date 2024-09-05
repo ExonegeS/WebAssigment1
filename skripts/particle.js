@@ -101,7 +101,7 @@ function init() {
     particlesArray = [];
 }
 
-let prevY, prevX = 0;
+let prevY, prevX;
 let t = []
 let fps = 60
 let targetFPS = 60; 
@@ -149,9 +149,7 @@ function animate(now) {
     let directionY = (Math.random() * speed) - speed/2;
     let color = '#8C5523';
 
-
     if (distance > 0) {
-        console.log(particlesArrayCursor)
         if (particlesArrayCursor.length > (canvas.height * canvas.width) / 18000) {
             particlesArrayCursor.shift();
         }
@@ -159,7 +157,7 @@ function animate(now) {
     }
     x = (Math.random() * ((innerWidth - size / 2) - (size*2)) + size * 2);
     y = (Math.random() * ((innerHeight - size / 2) - (size*2)) + size * 2);
-
+    [prevX, prevY] = [mouse.x, mouse.y]
 
     if (particlesArray.length < (canvas.height * canvas.width) / 5000) {
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color))

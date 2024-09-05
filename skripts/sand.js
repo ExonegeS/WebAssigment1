@@ -26,15 +26,31 @@ class SandParticle {
     }
 }
 
+function getMousePos(evt) {
+    let rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
+}
+
 window.addEventListener('mousemove', 
     function(event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
+    	let mousePos = getMousePos(event);
+        if (mousePos.x - mouse.x + mousePos.y - mouse.y == 0)  {
+        }
+        mouse.x = mousePos.x
+        mouse.y = mousePos.y
         if (isDrawing) {
             let col = Math.floor(mouse.x / w)
             let row = Math.floor(mouse.y / w)
-            if (col >= 0 && col < cols-1 && row >= 0 && row < rows-1)
-            grid[col][row] = .5
+            if (col >= 0 && col < cols-1 && row >= 0 && row < rows-1) {
+                let color = gaussianRandom(.7, .16);
+                if (event.buttons != 1) {
+                    color = 0;
+                } 
+                grid[col][row] = color;
+            }
         }
     }
 )
@@ -91,8 +107,8 @@ function make2DArray(cols, rows) {
 }
 
 function init() {
-    cols = Math.floor(400 / w);
-    rows = Math.floor(400 / w);
+    cols = Math.floor(canvas.width / w);
+    rows = Math.floor(canvas.height / w / 2);
     grid = make2DArray(cols, rows);
     nextGrid = make2DArray(cols, rows);
 
@@ -113,37 +129,41 @@ function init() {
 
 function draw() {
     // clear the canvas
-    ctx.fillStyle = "#555"
-    ctx.fillRect(0, 0, 400, 400);
-
+    ctx.fillStyle = "#000"
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    let borderSize = 0;
     let changed = false;
     for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
+        for (let j = rows-1; j > 0; j--) {
             let state = grid[i][j];
             ctx.fillStyle = `rgb(${255*state},${255*state},${255*state})`;
-            ctx.fillRect(i*w+1, j*w+1, w-2, w-2);
+            ctx.fillRect(i*w+borderSize, j*w+borderSize, w-borderSize*2, w-borderSize*2);
             if (state != 0) {
                 let below = grid[i][j+1];
-                let belowR = grid[i+1][j+1];
-                let belowL= grid[i-1][j+1];
+                let dir = Math.random() > 0.5 ? -1 : 1;
+                let belowA, belowB
+                let slide = 3;
+                if (i + dir < cols && i + dir >= 0) {
+                    belowA = grid[i+dir][j+slide];
+                }
+                if (i - dir < cols && i - dir >= 0) {
+                    belowB= grid[i-dir][j+slide];
+                }
                 if (j == rows-1) {
-
+                    nextGrid[i][j] = 0;
+                    nextGrid[i][j+1] = 0;
                 } else if (below == 0) {
                     nextGrid[i][j] = 0;
                     nextGrid[i][j+1] = state;
-                    changed = true;
-                } else if (belowR == 0) {
-                    nextGrid[i][j] = 0;
-                    nextGrid[i+1][j+1] = state;
-                    changed = true;
-                } else if (belowL == 0) {
-                    nextGrid[i][j] = 0;
-                    nextGrid[i-1][j+1] = state;
-                    changed = true;
+                    grid[i][j] = 0;
+                    grid[i][j+1] = state;
+                } else if (belowA === 0) {
+                    grid[i][j] = 0;
+                    grid[i+dir][j+slide] = state;
+                } else if (belowB === 0) {
+                    grid[i][j] = 0;
+                    grid[i-dir][j+slide] = state;
                 } 
-                else {
-                    nextGrid[i][j] = state;
-                }
             }
         }
     }
@@ -158,4 +178,4 @@ function draw() {
 init()
 
 // setinterval
-setInterval(draw, 1000/6)
+setInterval(draw, 1000/600)

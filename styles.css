@@ -9,6 +9,7 @@
 body {
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 
 p {
@@ -118,4 +119,13 @@ a:hover {
     height: 100%;
     z-index: -1;
     background: radial-gradient(#2e2e2e, #191919);
+}
+#canvas2 {
+    position:fixed;
+    top: 60px; left: 50%;
+    transform: translate(-50%, 500px);
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+    background: #191919;
 }

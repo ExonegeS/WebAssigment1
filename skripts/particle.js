@@ -29,7 +29,7 @@ function getMousePos(evt) {
 }
 let particlesArray = [];
 let particlesArrayCursor = [];
-
+let QTree;
 
 // create particle
 class Particle {
@@ -98,23 +98,26 @@ class Particle {
 }
 
 function init() {
-    let numberOfParticles = (canvas.height * canvas.width) / 9000;
-
     particlesArray = [];
-    for (let i = 0; i < numberOfParticles ; i++) {
-        let size = (Math.random() * 5) + 1;
-        let x = (Math.random() * ((innerWidth - size / 2) - (size*2)) + size * 2);
-        let y = (Math.random() * ((innerHeight - size / 2) - (size*2)) + size * 2);
-        let speed = 2;
-        let directionX = (Math.random() * speed) - speed/2;
-        let directionY = (Math.random() * speed) - speed/2;
-        let color = '#0FF';
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color))
-    }
 }
-let prevX, prevY
-function animate() {
-    requestAnimationFrame(animate)
+
+let prevY, prevX = 0;
+let t = []
+let fps = 60
+let targetFPS = 60; 
+let lastTime = 0;
+
+function animate(now) {
+    const dt = (now - lastTime) / 1000 * targetFPS;
+    lastTime = now;
+    t.unshift(now);
+    if (t.length > 10) {
+        var t0 = t.pop();
+        fps = Math.floor(1000 * 10 / (now - t0));
+    }    
+
+    
+    requestAnimationFrame(animate);
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     var time = Date.now();
     // map each value size if time < 5s
@@ -141,13 +144,14 @@ function animate() {
     let dx = prevX - mouse.x;
     let dy = prevY - mouse.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    let speed = 2;
+    let speed = 2 * dt;
     let directionX = (Math.random() * speed) - speed/2;
     let directionY = (Math.random() * speed) - speed/2;
     let color = '#8C5523';
 
 
     if (distance > 0) {
+        console.log(particlesArrayCursor)
         if (particlesArrayCursor.length > (canvas.height * canvas.width) / 18000) {
             particlesArrayCursor.shift();
         }
@@ -157,14 +161,15 @@ function animate() {
     y = (Math.random() * ((innerHeight - size / 2) - (size*2)) + size * 2);
 
 
-    if (particlesArray.length < (canvas.height * canvas.width) / 18000) {
+    if (particlesArray.length < (canvas.height * canvas.width) / 5000) {
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color))
     }
 
 
-    [prevX, prevY] = [mouse.x, mouse.y]
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
+    QTree = new QuadTree(new Rectangle(canvas.width/2, canvas.height/2, canvas.width/2, canvas.height/2), 4);
+    for (let p of particlesArray) {
+        QTree.insert(new Point(p.x, p.y, p));
+        p.update();
     }
     for (let i = 0; i < particlesArrayCursor.length; i++) {
         particlesArrayCursor[i].update();
@@ -173,23 +178,54 @@ function animate() {
 }
 
 function connect() {
+    //QTree.show(ctx)
+    
     let opacityValue = 1;
-    for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-            let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-            + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y))
+    for (let p of particlesArray) {
+        let points = [];
+        let range = new Rectangle(p.x, p.y, p.size*p.size*5, p.size*p.size*5)
+        //range.draw(ctx)
+        points = QTree.query(range);
+        // console.log(points.length)
+        for (let point of points) {
+            let o = point.userData;
+            if (p == o) {
+                continue
+            }
+            let distance = ((p.x - o.x) * (p.x - o.x))
+            + ((p.y - o.y) * (p.y - o.y))
+            if (distance < (canvas.width/7) * (canvas.height/7)) {
+                opacityValue = 1 - (distance / 5000)
+                ctx.strokeStyle=`rgba(250,85,151,${opacityValue})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(o.x, o.y);
+                ctx.stroke();
+            }
+        }
+    }
+    return
+    for (let p of particlesArray) {
+        for (let o of particlesArray) {
+            if (p == o) {
+                continue
+            }
+            let distance = ((p.x - o.x) * (p.x - o.x))
+            + ((p.y - o.y) * (p.y - o.y))
         
             if (distance < (canvas.width/7) * (canvas.height/7)) {
                 opacityValue = 1 - (distance / 5000)
                 ctx.strokeStyle=`rgba(250,85,151,${opacityValue})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(o.x, o.y);
                 ctx.stroke();
             }
         }
     }
+    return
 }
 
 window.addEventListener('resize',
@@ -207,4 +243,5 @@ window.addEventListener('mouseout',
     }
 )
 
+init()
 animate();

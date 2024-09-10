@@ -10,15 +10,94 @@
         
         <link rel="icon" href="" type="image/x-icon">
         <link rel="icon" type="image/webp" sizes="16x16" href="src/tumblr_ndbp92G3n31qhccbco4_250.webp">
-        <link rel="stylesheet" href="./styles.css">
+        <!-- <link rel="stylesheet" href="./styles.css"> -->
+        <style>
+            * {
+                margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #c5c5c5; text-decoration: none;
+            }
+            .header-wrapper {
+                align-items: center; 
+                border-radius: 0 15px 15px 30px; 
+                padding: 0 10px; 
+                margin: 0 auto; 
+                width: 100%; 
+                max-width: 1020px;
+                background-color: #2e2e2e; 
+                display: flex; 
+                justify-content: space-around;
+                position: fixed;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+            nav a {
+                color: #f5c5c5;
+                padding: 20px 20px;
+                margin-left: 20px;
+                background-color: #7afefe15;
+                border-radius: 10%;
+            }
+            nav a:hover {
+                padding: 20px 20px;
+                background-color: #5acece15;
+            }
+            .footer{
+                display: block;
+
+                background-color: #191919;
+            }
+            .footer-wrapper {
+                min-height: 40px;
+                display: flex;
+                flex-wrap: wrap;
+                margin: -40px auto;
+                max-width: 960px;
+                padding: 0 10px;
+                justify-content: space-around;
+                align-items: end;
+            }
+
+            main {
+                max-width: 960px;
+                margin: auto; 
+            }
+            main > :first-child {
+                padding-top: 100px;
+            }
+            .card-block {
+                display: flex;
+                flex-basis:100%;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .card-block :last-child {
+                border-radius: 0 20% 20%;
+            }
+            .card {
+                display: flex;
+                flex-direction: column;
+                background-color: #191919cc;
+                padding: 15px;
+                max-width: 270px;
+                width: 270px;
+                max-height: 370px;
+                height: 370px;
+                border-radius: 0 20%;
+                align-items: center;
+                justify-content:flex-start;
+            }
+            .card li {
+                width: 80%;
+                margin: 30px auto -10px;
+            }
+        </style>
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper" style="background: radial-gradient(rgb(168, 83, 168), #6011a9); min-height: 100vh;">
             <header>
                 <div class="header-wrapper">
-                    <a href="#home" class="active"><img src="src/tumblr_ndbos8REDU1qhccbco10_400.webp"> </a>
-                    <h1 class="header-title">This is header</h1>
-                    <nav id="myLinks">
+                    <a href="#home" class="active"><img height="80px" src="src/tumblr_ndbos8REDU1qhccbco10_400.webp"> </a>
+                    <h1 class="header-title" style="flex-basis:100%;">Process me <span style="color: #992244;">now</span></h1>
+                    <nav id="myLinks" style="display: flex;  justify-content: space-between; align-items: center; flex-basis:100%;">
                         <a href="#about">About</a>
                         <a href="#main">Main</a>
                         <a href="#contact">Contact</a>
@@ -26,32 +105,44 @@
                 </div>
             </header>
             <main>
-                <section id="about" class="active-block">
-                    <h2>This is About subheading</h2>
-                    <p>This is About paragraph</p>
-                    <p>Some <br><br><br><br><br><br><br><br><br><br><br>long<br><br><br><br><br><br><br><br><br><br><br><br><br> text<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>END</p>
+                <section id="about">
+                    <h2>Needed to generate a long text of known words? Got cha!</h2>
+                    <ul>
+                        <div class="card-block">
+                            <div class="card">
+                                <h3>Step 1</h3>
+                                <li>Get a very long text, </li>
+                                <li>For example book text, movie script, novel, etc.</li>
+                            </div>
+                            <div class="card">
+                                <h3>Step 2</h3>
+                                <li>Write a starting phrase of the text</li>
+                                <li>Select a generation settings</li>
+                                <li>Write a starting phrase of the text</li>
+                            </div>
+                            <div class="card">
+                                <h3>Step 3</h3>
+                                <li><p>Get a desired text<br></li>
+                            </div>
+                        </div>
+                    </ul>
                 
                 </section>
-                <section id="main">
-                    <h2>This is Main subheading </h2>
-                    <p>This is Main paragraph</p>
-                    <p>Some <br><br><br><br><br><br><br><br><br><br><br>long<br><br><br><br><br><br><br><br><br><br><br><br><br> text<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>END</p>
-                </section>
-                <canvas id="canvas1"></canvas>
+                <!-- <canvas id="canvas1"></canvas>
                 <script src="skripts/QuadTree.js"></script>
                 <script src="skripts/particle.js"></script>
 
-                <!-- <script src="skripts/sand.js"></script> -->
-                <!-- <canvas id="canvas2"></canvas> -->
+                <script src="skripts/sand.js"></script>
+                <canvas id="canvas2"></canvas> -->
+                
             </main>
-            <footer class="footer" id="contact">
-                <div class="footer-wrapper">
-                    <a href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle" /></a>
-                    <a href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github" /></a>
-                    <a href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram" /></a>
-                </div>
-            </footer>
-            
         </div>
+        <footer class="footer" id="contact">
+            <div class="footer-wrapper">
+                <a href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle" /></a>
+                <a href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github" /></a>
+                <a href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram" /></a>
+            </div>
+        </footer>
     </body>
 </html>

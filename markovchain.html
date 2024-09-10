@@ -2,13 +2,12 @@
 <html lang="en">
     <head>
         <title>Markov Chain</title>
-
         <meta charset="utf-8">
-        <meta name="viewport" content="width=devise-width, initial-scale=1">
-        <meta name= “robots” content=index, nofollow”>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="index, nofollow">
         <meta name="description" content="Some crappy website project example">
         
-        <link rel="icon" href="" type="image/x-icon">
+        <link rel="icon" href="src/favicon.ico" type="image/x-icon">
         <link rel="icon" type="image/webp" sizes="16x16" href="src/tumblr_ndbp92G3n31qhccbco4_250.webp">
         <!-- <link rel="stylesheet" href="./styles.css"> -->
         <style>
@@ -60,9 +59,13 @@
                 max-width: 960px;
                 margin: auto; 
             }
+            section {
+                padding-bottom: 60px;
+            }
             main > :first-child {
                 padding-top: 100px;
             }
+            
             .card-block {
                 display: flex;
                 flex-basis:100%;
@@ -97,7 +100,7 @@
         <div class="wrapper" style="background: radial-gradient(rgb(168, 83, 168), #6011a9); min-height: 100vh;">
             <header>
                 <div class="header-wrapper">
-                    <a href="./" class="active"><img height="80px" src="src/tumblr_ndbos8REDU1qhccbco10_400.webp"> </a>
+                    <a href="./" class="active"><img height="80" src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="Logo image"></a>
                     <h1 class="header-title" style="flex-basis:100%;">Process me <span style="color: #992244;">now</span></h1>
                     <nav id="myLinks" style="display: flex;  justify-content: space-between; align-items: center; flex-basis:100%;">
                         <a href="./stats.html">Stats</a>
@@ -110,34 +113,40 @@
                 <section id="instructions">
                     <h2>How to Use the Markov Chain Text Generator</h2>
                     <figure>
-                        <img height="300px" src="src/markov_chain_diagram.png" alt="Markov Chain Diagram">
+                        <img height="300" src="src/markov_chain_diagram.png" alt="Markov Chain Diagram">
                         <figcaption>A diagram illustrating the Markov chain algorithm</figcaption>
                     </figure>
-                    <ul>
-                        <div class="card-block">
-                            <div class="card">
-                                <h3>Step 1: Paste Your Text</h3>
+                    <div class="card-block">
+                        <div class="card">
+                            <h3>Step 1: Paste Your Text</h3>
+                            <ul>
                                 <li>Paste a large block of text into the input field.</li>
                                 <li>This can be a book excerpt, a movie script, a novel, or any other type of text.</li>
-                            </div>
-                            <div class="card">
-                                <h3>Step 2: Analyze the Text</h3>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Step 2: Analyze the Text</h3>
+                            <ul>
                                 <li>Press the "Analyze" button to process the input text.</li>
                                 <li>The generator will create a statistical model of the text.</li>
-                            </div>
-                            <div class="card">
-                                <h3>Step 3: Generate Text</h3>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Step 3: Generate Text</h3>
+                            <ul>
                                 <li>Enter a starting phrase or sentence to generate text from.</li>
                                 <li>Select the desired generation settings, such as the length of the generated text.</li>
                                 <li>Press the "Generate" button to create new text based on the input model.</li>
-                            </div>
-                            <div class="card">
-                                <h3>Step 4: Review and Refine</h3>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Step 4: Review and Refine</h3>
+                            <ul>
                                 <li>Review the generated text to ensure it meets your needs.</li>
                                 <li>If necessary, refine the generation settings and try again.</li>
-                            </div>
+                            </ul>
                         </div>
-                    </ul>
+                    </div>
                 </section>
                 <!-- <canvas id="canvas1"></canvas>
                 <script src="skripts/QuadTree.js"></script>
@@ -148,11 +157,11 @@
                 
             </main>
         </div>
-        <footer class="footer" id="contact">
+        <footer class="footer" id="contact-footer">
             <div class="footer-wrapper">
-                <a href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle" /></a>
-                <a href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github" /></a>
-                <a href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram" /></a>
+                <a href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle"></a>
+                <a href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github"></a>
+                <a href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram"></a>
             </div>
         </footer>
     </body>

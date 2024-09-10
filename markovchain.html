@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Process me now</title>
+        <title>Markov Chain</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=devise-width, initial-scale=1">
@@ -60,13 +60,9 @@
                 max-width: 960px;
                 margin: auto; 
             }
-            section {
-                padding-bottom: 60px;
-            }
             main > :first-child {
                 padding-top: 100px;
             }
-            
             .card-block {
                 display: flex;
                 flex-basis:100%;
@@ -111,72 +107,45 @@
                 </div>
             </header>
             <main>
-                <section id="about">
-                    <h2>Welcome to Processme.now!</h2>
-                    <p>This website is dedicated to text manipulation and analysis. You can use our tools to generate long texts of known words using Markov chain algorithm.</p>  
+                <section id="instructions">
+                    <h2>How to Use the Markov Chain Text Generator</h2>
+                    <figure>
+                        <img height="300px" src="src/markov_chain_diagram.png" alt="Markov Chain Diagram">
+                        <figcaption>A diagram illustrating the Markov chain algorithm</figcaption>
+                    </figure>
                     <ul>
                         <div class="card-block">
                             <div class="card">
-                                <h3>Features of Kinda Mess</h3>
-                                <li>Text manipulation and analysis</li>
-                                <li>Markov chain algorithm</li>
-                                <li>Text generation</li>
-                                <li>Simple and intuitive interface</li>
+                                <h3>Step 1: Paste Your Text</h3>
+                                <li>Paste a large block of text into the input field.</li>
+                                <li>This can be a book excerpt, a movie script, a novel, or any other type of text.</li>
                             </div>
                             <div class="card">
-                                <h3>How to use my site?</h3>
-                                <li>Follow the steps below</li>
-                                <li>Get your desired text</li>
+                                <h3>Step 2: Analyze the Text</h3>
+                                <li>Press the "Analyze" button to process the input text.</li>
+                                <li>The generator will create a statistical model of the text.</li>
                             </div>
                             <div class="card">
-                                <h3>What is Markov chain algorithm?</h3>
-                                <li>It's a statistical model</li>
-                                <li>Used for generating text</li>
-                                <li>Based on probability</li>
+                                <h3>Step 3: Generate Text</h3>
+                                <li>Enter a starting phrase or sentence to generate text from.</li>
+                                <li>Select the desired generation settings, such as the length of the generated text.</li>
+                                <li>Press the "Generate" button to create new text based on the input model.</li>
+                            </div>
+                            <div class="card">
+                                <h3>Step 4: Review and Refine</h3>
+                                <li>Review the generated text to ensure it meets your needs.</li>
+                                <li>If necessary, refine the generation settings and try again.</li>
                             </div>
                         </div>
                     </ul>
                 </section>
+                <!-- <canvas id="canvas1"></canvas>
+                <script src="skripts/QuadTree.js"></script>
+                <script src="skripts/particle.js"></script>
 
-                <section id="testimonials">
-                    <h2>What our users say</h2>
-                    <blockquote>
-                        <p>"Processme.now is an amazing tool for generating text. It's so easy to use!"</p>
-                        <cite>Myself</cite>
-                    </blockquote>
-                </section>
-
-                <section id="steps">
-                    <h2>How to use Processme.now</h2>
-                    <ol>
-                        <li>Click on the buttons in the header</li>
-                        <li>Follow the steps</li>
-                    </ol>
-                </section>
-
-                <section id="glossary">
-                    <h2>Glossary</h2>
-                    <dl>
-                        <dt>Markov chain algorithm</dt>
-                        <dd>A statistical model used for generating text based on probability</dd>
-                        <dt>Text manipulation</dt>
-                        <dd>The process of modifying or analyzing text using various techniques</dd>
-                    </dl>
-                </section>
-
-                <section id="contact">
-                    <h2>Get in touch</h2>
-
-                    <form class="card">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name"><br><br>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email"><br><br>
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message"></textarea><br><br>
-                        <input type="submit" value="Send">
-                    </form>
-                </section>
+                <script src="skripts/sand.js"></script>
+                <canvas id="canvas2"></canvas> -->
+                
             </main>
         </div>
         <footer class="footer" id="contact">

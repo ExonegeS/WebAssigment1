@@ -9,95 +9,10 @@
         
         <link rel="icon" href="src/favicon.ico" type="image/x-icon">
         <link rel="icon" type="image/webp" sizes="16x16" href="src/tumblr_ndbp92G3n31qhccbco4_250.webp">
-        <!-- <link rel="stylesheet" href="./styles.css"> -->
-        <style>
-            * {
-                margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #c5c5c5; text-decoration: none;
-            }
-            .header-wrapper {
-                align-items: center; 
-                border-radius: 0 15px 15px 30px; 
-                padding: 0 10px; 
-                margin: 0 auto; 
-                width: 100%; 
-                max-width: 1020px;
-                background-color: #2e2e2e; 
-                display: flex; 
-                justify-content: space-around;
-                position: fixed;
-                left: 50%;
-                transform: translate(-50%, 0);
-            }
-            nav a {
-                color: #f5c5c5;
-                padding: 20px 20px;
-                margin-left: 20px;
-                background-color: #7afefe15;
-                border-radius: 10%;
-            }
-            nav a:hover {
-                padding: 20px 20px;
-                background-color: #5acece15;
-            }
-            .footer{
-                display: block;
-
-                background-color: #191919;
-            }
-            .footer-wrapper {
-                min-height: 40px;
-                display: flex;
-                flex-wrap: wrap;
-                margin: -40px auto;
-                max-width: 960px;
-                padding: 0 10px;
-                justify-content: space-around;
-                align-items: end;
-            }
-
-            main {
-                max-width: 960px;
-                margin: auto; 
-            }
-            section {
-                padding-bottom: 60px;
-            }
-            main > :first-child {
-                padding-top: 100px;
-            }
-            
-            .card-block {
-                display: flex;
-                flex-basis:100%;
-                justify-content: space-around;
-                flex-wrap: wrap;
-                row-gap: 30px; /* ⬄ only */
-                column-gap: 10px; /* ⬄ only */
-            }
-            .card-block :last-child {
-                border-radius: 0 20% 20%;
-            }
-            .card {
-                display: flex;
-                flex-direction: column;
-                background-color: #191919cc;
-                padding: 15px;
-                max-width: 270px;
-                width: 270px;
-                max-height: 370px;
-                height: 370px;
-                border-radius: 0 20%;
-                align-items: center;
-                justify-content:flex-start;
-            }
-            .card li {
-                width: 80%;
-                margin: 30px auto -10px;
-            }
-        </style>
+        <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-        <div class="wrapper" style="background: radial-gradient(rgb(168, 83, 168), #6011a9); min-height: 100vh;">
+        <div class="wrapper">
             <header>
                 <div class="header-wrapper">
                     <a href="./" class="active"><img height="80" src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="Logo image"></a>
@@ -143,6 +58,9 @@
                         </div>
                     </div>
                 </section>
+                <canvas id="canvas1" style="z-index: -1;"></canvas>
+                <script src="skripts/QuadTree.js"></script>
+                <script src="skripts/particle.js"></script>
                 <!-- <canvas id="canvas1"></canvas>
                 <script src="skripts/QuadTree.js"></script>
                 <script src="skripts/particle.js"></script>

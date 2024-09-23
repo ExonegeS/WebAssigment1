@@ -7,109 +7,109 @@
         <meta name="robots" content="index, nofollow">
         <meta name="description" content="Some crappy website project example">
         
-        <link rel="icon" href="src/favicon.ico" type="image/x-icon">
         <link rel="icon" type="image/webp" sizes="16x16" href="src/tumblr_ndbp92G3n31qhccbco4_250.webp">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-        <div class="wrapper">
-            <header>
-                <div class="header-wrapper">
-                    <a href="./" class="active"><img height="80" src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="Logo image"></a>
-                    <h1 class="header-title" style="flex-basis:100%;">Process me <span style="color: #992244;">now</span></h1>
-                    <nav id="myLinks" style="display: flex;  justify-content: space-between; align-items: center; flex-basis:100%;">
-                        <a href="./stats.html">Stats</a>
-                        <a href="./markovchain.html">MarkovChain</a>
-                        <a href="#contact-footer">Contact</a>
-                    </nav>
-                </div>
-            </header>
-            <main>
-                <section id="about">
-                    <h2>Welcome to Processme.now!</h2>
-                    <p>This website is dedicated to text manipulation and analysis. You can use our tools to generate long texts of known words using Markov chain algorithm.</p>  
-                    <div class="card-block">
-                        <div class="card">
-                            <h3>Features of Kinda Mess</h3>
-                                <ul>
-                                    <li>Text manipulation and analysis</li>
-                                    <li>Markov chain algorithm</li>
-                                    <li>Text generation</li>
-                                    <li>Simple and intuitive interface</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>How to use my site?</h3>
-                                <ul>
-                                    <li>Follow the steps below</li>
-                                    <li>Get your desired text</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>What is Markov chain algorithm?</h3>
-                                <ul>
-                                    <li>It's a statistical model</li>
-                                    <li>Used for generating text</li>
-                                    <li>Based on probability</li>
-                                </ul>
-                            </div>
-                        </div>
-                </section>
-
-                <section id="testimonials">
-                    <h2>What our users say</h2>
-                    <blockquote>
-                        <p>"Processme.now is an amazing tool for generating text. It's so easy to use!"</p>
-                        <cite>Myself</cite>
-                    </blockquote>
-                </section>
-
-                <section id="steps">
-                    <h2>How to use Processme.now</h2>
-                    <ol>
-                        <li>Click on the buttons in the header</li>
-                        <li>Follow the steps</li>
-                    </ol>
-                </section>
-
-                <section id="glossary">
-                    <h2>Glossary</h2>
-                    <dl>
-                        <dt>Markov chain algorithm</dt>
-                        <dd>A statistical model used for generating text based on probability</dd>
-                        <dt>Text manipulation</dt>
-                        <dd>The process of modifying or analyzing text using various techniques</dd>
-                    </dl>
-                </section>
-
-                <section id="contact">
-                    <h2>Get in touch</h2>
-
-                    <form class="card">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name"><br><br>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email"><br><br>
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message"></textarea><br><br>
-                        <input type="submit" value="Send">
-                    </form>
-                </main>
-                <canvas id="canvas1" style="z-index: -1;"></canvas>
-                <script src="skripts/QuadTree.js"></script>
-                <script src="skripts/particle.js"></script>
-            </section>
-            <!-- <script src="skripts/sand.js"></script> -->
-            <!-- <canvas id="canvas2"></canvas> -->
-            <!-- <script src="skripts/sand.js"></script> -->
-            <!-- <canvas id="canvas2"></canvas> -->
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="Logo" height="40" class="d-inline-block align-top logo">
+            <span class="ms-2">Process me <span class="text-danger">now</span></span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#features-section">Tools</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#footer-section">Contact</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <footer class="footer" id="contact-footer">
-            <div class="footer-wrapper">
-                <a href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle"></a>
-                <a href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github"></a>
-                <a href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram"></a>
+      </nav>
+
+      <!-- Welcome section -->
+      <section class="welcome-section py-5">
+        <div class="container p-4">
+          <h1 class="display-3 mt-lg-8 px-sm-2">Welcome to Process Me Now!</h1>
+          <p class="lead">Your go-to site for all your text processing needs. Our tools help you manipulate and manage text efficiently. Whether you need to format, convert, or analyze text, we've got you covered.</p>
+          <img src="src/background-image.jpg" draggable="false" alt="Background Image" class="img-fluid rounded-pill shadow-4-strong border-danger border">
+        </div>
+      </section>
+      
+      <!-- Call to action section -->
+      <section class="call-to-action-section py-5">
+        <div class="container">
+          <h2 class="display-5">Get Started with Process Me Now!</h2>
+          <p class="lead">Start processing your text today and discover the power of our tools.</p>
+          <a href="#features-section" class="btn btn-lg btn-primary">Explore Our Tools</a>
+        </div>
+      </section>
+      
+      <!-- Features section -->
+      <section class="features-section py-5" id="features-section">
+        <div class="container">
+          <h2 class="display-5">Our Tools</h2>
+          <p class="lead">We offer a range of tools to help you manipulate and manage text efficiently.</p>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img class="card-img-top" src="src/reading.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Text Counter</h5>
+                  <p class="card-text">Count the number of lines, words, characters  in your text with our easy-to-use word counter tool.</p>
+                  <a href="/stats.html" class="btn btn-primary">Try it now</a>
+                </div>
+              </div>
             </div>
-        </footer>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img class="card-img-top" src="src/writing2.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Markov Chain Generator</h5>
+                  <p class="card-text">Generate random text based on a given input using our Markov chain generator tool.</p>
+                  <a href="/markovchain.html" class="btn btn-primary">Try it now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img class="card-img-top" src="src/writing.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Case Converter</h5>
+                  <p class="card-text p-4">Convert your text to uppercase, lowercase, or title case with our easy-to-use case converter tool.</p>
+                  <a href="#" class="btn btn-danger disabled">Try it now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Footer section -->
+      <footer class="footer-section py-4 bg-dark" id="footer-section">
+        <div class="container text-center">
+          <div class="row">
+            <a class="col" href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle"></a>
+            <a class="col" href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github"></a>
+            <a class="col" href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram"></a>
+          </div>
+        </div>
+      </footer>
+      <canvas id="canvas1" style="z-index: -1;"></canvas>
+      <script src="skripts/QuadTree.js"></script>
+      <script src="skripts/sand.js"></script>   
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

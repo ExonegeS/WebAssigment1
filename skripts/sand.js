@@ -34,6 +34,10 @@ function getMousePos(evt) {
     };
 }
 
+document.addEventListener('contextmenu', event => {
+    event.preventDefault();
+});
+
 window.addEventListener('mousemove', 
     function(event) {
     	let mousePos = getMousePos(event);
@@ -48,6 +52,7 @@ window.addEventListener('mousemove',
                 let color = gaussianRandom(.7, .16);
                 if (event.buttons != 1) {
                     color = 0;
+                    resetLowerLayer();
                 } 
                 grid[col][row] = color;
             }
@@ -81,6 +86,9 @@ window.addEventListener('mouseout',
         mouse.y = undefined;
     }
 )
+
+
+
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=.5, stdev=.16) {
     let u = 1 - Math.random(); //Converting [0,1) to (0,1)
@@ -91,9 +99,10 @@ function gaussianRandom(mean=.5, stdev=.16) {
 }
 
 let grid, nextGrid;
-let w = 10;
+let w = 20;
 let cols, rows;
 let isDrawing = false
+let resetTimer = 0;
 
 function make2DArray(cols, rows) {
     let arr = new Array(cols);
@@ -107,17 +116,17 @@ function make2DArray(cols, rows) {
 }
 
 function init() {
+    w = Math.sqrt(canvas.width * canvas.height) / 100;
     cols = Math.floor(canvas.width / w);
-    rows = Math.floor(canvas.height / w / 2);
+    rows = Math.floor(canvas.height / w / 1.1);
     grid = make2DArray(cols, rows);
     nextGrid = make2DArray(cols, rows);
 
-    grid[20][10] = .7;
-    grid[20][9] = .6;
-    grid[20][8] = .9;
-    grid[20][7] = 1;
-    grid[20][6] = 1;
-    grid[20][5] = 1;
+    for (let i = 0; i < cols*10; i++) {
+        var [x, y] = [Math.floor(Math.random()*rows), Math.floor(gaussianRandom(.5, .1)*cols)];
+        console.log(cols, rows, x, y, )
+        grid[y][x] = gaussianRandom();
+    }
     
     ctx.strokeStyle = '#fff';
     for (let i = 0; i < cols; i++) {
@@ -172,8 +181,22 @@ function draw() {
     if (changed) {
         grid = nextGrid.map(arr => arr.slice()); // copy the nextGrid to grid
     }
+
+    resetTimer++;
+    if (resetTimer >= 10) { // 300 = 5 seconds * 60 fps
+        resetTimer = 0;
+    }
 }
 
+function resetLowerLayer() {
+    for (let i = 0; i < cols; i++) {
+        for (let j = rows - 1; j < rows; j++) { // reset the lower 10 rows
+            if (Math.random() > .9) {
+                grid[i][j] = 0;
+            }
+        }
+    }
+}
 
 init()
 

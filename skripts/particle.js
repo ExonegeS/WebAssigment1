@@ -147,7 +147,7 @@ function animate(now) {
     let speed = 2 * dt;
     let directionX = (Math.random() * speed) - speed/2;
     let directionY = (Math.random() * speed) - speed/2;
-    let color = '#8C5523';
+    let color = `rgba(150,${Math.random()*255},151,${Math.random()})`;
 
     if (distance > 0) {
         if (particlesArrayCursor.length > (canvas.height * canvas.width) / 18000) {
@@ -182,6 +182,7 @@ function connect() {
     for (let p of particlesArray) {
         let points = [];
         let range = new Rectangle(p.x, p.y, p.size*p.size*5, p.size*p.size*5)
+        // range.draw()
         //range.draw(ctx)
         points = QTree.query(range);
         // console.log(points.length)
@@ -194,7 +195,7 @@ function connect() {
             + ((p.y - o.y) * (p.y - o.y))
             if (distance < (canvas.width/7) * (canvas.height/7)) {
                 opacityValue = 1 - (distance / 5000)
-                ctx.strokeStyle=`rgba(250,85,151,${opacityValue})`;
+                ctx.strokeStyle=p.color;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);

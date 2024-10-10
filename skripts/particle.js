@@ -3,11 +3,10 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-
 // get mouse position
 let mouse = {
-    x: null,
-    y: null,
+    x: canvas.width/2,
+    y: canvas.height/2,
     radius: (canvas.height/80) * (canvas.width / 80)
 }
 
@@ -18,6 +17,15 @@ window.addEventListener('mousemove',
         }
         mouse.x = mousePos.x
         mouse.y = mousePos.y
+
+        // not make it zero
+        if (event.movementX * event.movementY != 0) {
+            GdirectionX =  event.movementX / 20;
+            GdirectionY = event.movementY / 20;
+        } else {
+            GdirectionX += (gaussianRandom()-.5) / 10;
+            GdirectionY += (gaussianRandom()-.5) / 10;
+        }
     }
 )
 function getMousePos(evt) {
@@ -30,10 +38,12 @@ function getMousePos(evt) {
 let particlesArray = [];
 let particlesArrayCursor = [];
 let QTree;
+let GdirectionX;
+let GdirectionY;
 
 // create particle
 class Particle {
-    constructor(x, y, directionX, directionY, size, color, maxSize = 5, push = true, decaying=true) {
+    constructor(x, y, directionX, directionY, size, color, maxSize = 5, push = true, decaying=true, colorConnect='rgba(255,255,0,1)') {
         this.x = x;
         this.y = y;
         this.startx = x;
@@ -42,6 +52,7 @@ class Particle {
         this.directionY = directionY;
         this.size = size;
         this.color = color;
+        this.colorConnect = colorConnect
         this.time = Date.now();
         this.growing = true;
         this.decaying = decaying
@@ -49,10 +60,12 @@ class Particle {
         this.push = push;
     }
     draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
+        if (this.size > 0) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
     }
 
     update() {
@@ -68,7 +81,7 @@ class Particle {
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx*dx + dy*dy);
         
-        if (distance < mouse.radius + this.size && this.push && this.decaying) {
+        if (distance < mouse.radius + this.size && this.push && false) {
             if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
                 this.x += 0
             }
@@ -82,23 +95,33 @@ class Particle {
                 this.y -= 0
             }
         } else {
-            if (this.growing) {
-                this.size += 0.01
-                if (this.size > this.maxSize) {
-                    this.growing = false
-                }
+            if(distance > mouse.radius) {
+                this.size -= 0.005
             } else {
                 this.size -= 0.05
-                this.x += this.directionX;
-                this.y += this.directionY;
             }
+                
+            this.x += -GdirectionX  * distance/300;
+            this.y += -GdirectionY  * distance/300;
         }
         this.draw()
     }
 }
+// Standard Normal variate using Box-Muller transform.
+function gaussianRandom(mean=.5, stdev=.16) {
+    let u = 1 - Math.random(); //Converting [0,1) to (0,1)
+    let v = Math.random();
+    let z = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+    // Transform to the desired mean and standard deviation:
+    return z * stdev + mean;
+}
 
 function init() {
     particlesArray = [];
+    mouse.x = 0
+    mouse.y = 0
+    GdirectionX = (gaussianRandom()-.5) / 10;
+    GdirectionY = (gaussianRandom()-.5) / 10;
 }
 
 let prevY, prevX;
@@ -129,7 +152,10 @@ function animate(now) {
     })
     particlesArray = particlesArray.filter(function(item) {
         // Delete if time of creation > 5s
-        return item.size > 0.1;
+        let val = item.size > 0.1;
+        val = val && item.x >= 0 && item.x <= canvas.width;
+        val = val && item.y >= 0 && item.y <= canvas.height;
+        return val;
     });
     particlesArray.red
     particlesArrayCursor = particlesArrayCursor.filter(function(item) {
@@ -138,29 +164,29 @@ function animate(now) {
     });
     
 
-    let size = (Math.random() * 5) + .1;
+    let size = (gaussianRandom() * 20 ) + 1.0;
     let x = mouse.x;
     let y = mouse.y;
     let dx = prevX - mouse.x;
     let dy = prevY - mouse.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    let speed = 2 * dt;
+    let speed = 10 * dt;
     let directionX = (Math.random() * speed) - speed/2;
     let directionY = (Math.random() * speed) - speed/2;
-    let color = `rgba(150,${Math.random()*255},151,${Math.random()})`;
+    let color = `hsla(${lastTime}, 50%, 50%, .5)`;
 
     if (distance > 0) {
         if (particlesArrayCursor.length > (canvas.height * canvas.width) / 18000) {
             particlesArrayCursor.shift();
         }
-        particlesArrayCursor.push(new Particle(x, y, directionX, directionY, size, '#ccc', 3, false, false))
+        particlesArrayCursor.push(new Particle(x, y, directionX/10, directionY/10, 10*gaussianRandom(), '#ccc', 3, true, false))
     }
     x = (Math.random() * ((innerWidth - size / 2) - (size*2)) + size * 2);
     y = (Math.random() * ((innerHeight - size / 2) - (size*2)) + size * 2);
     [prevX, prevY] = [mouse.x, mouse.y]
 
     if (particlesArray.length < (canvas.height * canvas.width) / 5000) {
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color))
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color, 5, true, true, `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},1)`))
     }
 
 
@@ -169,42 +195,55 @@ function animate(now) {
         QTree.insert(new Point(p.x, p.y, p));
         p.update();
     }
-    for (let i = 0; i < particlesArrayCursor.length; i++) {
-        particlesArrayCursor[i].update();
+    for (let p of particlesArrayCursor) {
+        QTree.insert(new Point(p.x, p.y, p));
+        if (p != particlesArrayCursor[particlesArrayCursor.length-1])
+        p.update();
     }
+    // for (let i = 0; i < particlesArrayCursor.length; i++) {
+    //     particlesArrayCursor[i].update();
+    // }
     connect()
 }
 
 function connect() {
-    //QTree.show(ctx)
+    if (particlesArrayCursor.length < 1) {
+        return;
+    }
+    // QTree.show(ctx)
     
     let opacityValue = 1;
-    for (let p of particlesArray) {
+    let p = particlesArrayCursor[particlesArrayCursor.length-1];
+    //for (let p of particlesArrayCursor) {
         let points = [];
-        let range = new Rectangle(p.x, p.y, p.size*p.size*5, p.size*p.size*5)
-        // range.draw()
+        let range = new Rectangle(mouse.x, mouse.y, mouse.radius, mouse.radius);
+        // console.log(range)
+        // range.draw(ctx)
         //range.draw(ctx)
         points = QTree.query(range);
         // console.log(points.length)
+        let i = 0;
         for (let point of points) {
+            
             let o = point.userData;
             if (p == o) {
                 continue
             }
-            let distance = ((p.x - o.x) * (p.x - o.x))
+            let distance = ((p.x - o.x) * (p.x - o.x));
             + ((p.y - o.y) * (p.y - o.y))
-            if (distance < (canvas.width/7) * (canvas.height/7)) {
-                opacityValue = 1 - (distance / 5000)
-                ctx.strokeStyle=p.color;
-                ctx.lineWidth = 1;
+            if (o.size > 0) {
+                opacityValue = .2
+                ctx.strokeStyle=`hsla(0, 0%, ${o.size > 10 ? 80 : 100}%, ${opacityValue})`;
+                ctx.lineWidth = o.size/10;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(o.x, o.y);
                 ctx.stroke();
             }
         }
-    }
-    return
+    //}
+
+    return;
     for (let p of particlesArray) {
         for (let o of particlesArray) {
             if (p == o) {
@@ -214,8 +253,8 @@ function connect() {
             + ((p.y - o.y) * (p.y - o.y))
         
             if (distance < (canvas.width/7) * (canvas.height/7)) {
-                opacityValue = 1 - (distance / 5000)
-                ctx.strokeStyle=`rgba(250,85,151,${opacityValue})`;
+                opacityValue = .05;
+                ctx.strokeStyle=`rgba(210,185,151,${opacityValue})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
@@ -237,10 +276,26 @@ window.addEventListener('resize',
 
 window.addEventListener('mouseout', 
     function() {
-        mouse.x = undefined;
-        mouse.y = undefined;
+        //mouse.x = 0;
+        //mouse.y = 0;
+        GdirectionX /= 3;
+        GdirectionY /= 3;
     }
 )
+
+// make mouseScroll event only when alt is pressed
+window.addEventListener('wheel',
+    function(event) {
+        if (event.shiftKey) {
+            if (event.deltaY > 0) {
+                // scroll down
+                mouse.radius *= .9
+            } else {
+                mouse.radius *= 1.1
+            }
+        }
+    }
+);
 
 init()
 animate();

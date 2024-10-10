@@ -31,12 +31,15 @@
 
 
 .card {
-    background-color: #191919;
+    background-color: #19191999;
     color: #c5c5c5; 
 }
 .card p {
     color: #c3c3c3; 
 }
+
+
+
 #canvas1 {
     position:fixed;
     top: 0px; left: 0;

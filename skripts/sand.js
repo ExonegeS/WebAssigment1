@@ -145,7 +145,7 @@ function draw() {
     for (let i = 0; i < cols; i++) {
         for (let j = rows-1; j > 0; j--) {
             let state = grid[i][j];
-            ctx.fillStyle = `rgb(${255*state},${255*state},${255*state})`;
+            ctx.fillStyle = `rgb(${255*state},0, 0)`;
             ctx.fillRect(i*w+borderSize, j*w+borderSize, w-borderSize*2, w-borderSize*2);
             if (state != 0) {
                 let below = grid[i][j+1];

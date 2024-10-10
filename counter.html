@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Counter - Process Meow</title>
+    <link rel="icon" type="image/webp" sizes="16x16" href="src/tumblr_ndbp92G3n31qhccbco4_250.webp">
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <script src="./bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="TextPro Logo" height="40" class="d-inline-block align-top logo">
+                Process me<span class="text-danger">ow</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="counter.html">Counter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="markov.html">Markov</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+
+        <main class="container py-5">
+            <h1 class="mb-4">Text Counter</h1>
+            <p class="lead">Count words, lines, and characters in your text. Perfect for writers, editors, and content creators.</p>
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h2>Input Text</h2>
+                    <form id="counterForm">  
+                        <div class="mb-3">
+                            <label for="inputText" class="form-label">Enter or paste your text here:</label>
+                            <textarea class="form-control bg-dark text-light" id="inputText" rows="10"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputFile" class="form-label">Or upload a text file:</label>
+                            <input type="file" class="form-control bg-dark text-light" id="inputFile" accept=".txt">
+                            <button id="rmv1" class="btn btn-outline-danger text-right" type="button">Remove File</button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="custom-control-label" for="radioToText">Display result on page</label>
+                            <input type="radio" id="radioToText" name="outputRadio" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="radioToFile">Output result to file</label>
+                            <input type="radio" id="radioToFile" name="outputRadio" class="custom-control-input">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Count Text</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h2>Results</h2>
+                    <div id="outputResults" class="card border p-3 min-vh-100">
+                        <p><strong>Words:</strong> <span id="wordCount">0</span></p>
+                        <p><strong>Characters (with spaces):</strong> <span id="charCountWithSpaces">0</span></p>
+                        <p><strong>Characters (without spaces):</strong> <span id="charCountWithoutSpaces">0</span></p>
+                        <p><strong>Lines:</strong> <span id="lineCount">0</span></p>
+                        <p><strong>Sentences:</strong> <span id="sentenceCount">0</span></p>
+                        <p><strong>Paragraphs:</strong> <span id="paragraphCount">0</span></p>
+                        <p><strong>Average Words Per Sentence:</strong> <span id="avgWordsPerSentence">0</span></p>
+                        <p><strong>Average Characters Per Word:</strong> <span id="avgCharsPerWord">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer-section py-4 bg-dark" id="contact">
+            <div class="container text-center">
+              <div class="row">
+                <a class="col" href="https://moodle.astanait.edu.kz/user/profile.php?id=12614" target="_blank"><img src="https://img.shields.io/badge/moodle-Ilya%20Gussak-blue?logo=Linkedin" alt="Moodle"></a>
+                <a class="col" href="https://github.com/ExonegeS" target="_blank"><img src="https://img.shields.io/badge/github-exoneges-success?logo=github" alt="Github"></a>
+                <a class="col" href="https://t.me/undefinedbro" target="_blank"><img src="https://img.shields.io/badge/telegram-@undefinedbro-blue?logo=Telegram" alt="Telegram"></a>
+                <hr class="mt-4 mb-3">
+                <p class="text-center mb-0">&copy; 2024 ProcessMeow. All rights reserved.</p>
+              </div>
+            </div>
+        </footer>
+        
+        <canvas id="canvas1" style="z-index: -1;"></canvas>
+        <script src="skripts/QuadTree.js"></script>
+        <script src="skripts/particle.js"></script>
+        <script src="skripts/counter.js"></script>
+    </div>
+</body>
+</html>

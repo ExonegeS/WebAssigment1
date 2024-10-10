@@ -22,7 +22,18 @@ function showContactMe() {
 
     function updateDateTime() {
         const currentDate = new Date();
-        const formattedDate = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
+        // Change it to the Oct 11 2024 form;
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        };
+
+        const formattedDate = `${currentDate.toLocaleDateString(undefined, options)}\n${currentDate.toLocaleTimeString('it-IT')}`;
+
+        
         document.querySelector('.fw-bold.text-center').innerText = formattedDate;
     }
     contactUsForm.innerHTML = `

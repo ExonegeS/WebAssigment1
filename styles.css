@@ -38,6 +38,30 @@
     color: #c3c3c3; 
 }
 
+.faq-block {
+    background-color: #0d6efd11; /* light gray background */
+    border: 1px solid #0d6efd; /* light gray border */
+    border-radius: 50px; /* rounded corners */
+    padding: 10px; /* some padding inside the block */
+    margin-bottom: 20px; /* some margin between blocks */
+}
+
+.faq-question {
+    font-weight: bold; /* make question headings bold */
+    color: rgb(188, 188, 46);  /* blue color for question headings */
+    padding: 5px;
+    padding-left: 2%; /* some padding on the left */
+}
+
+.faq-answer {
+    padding-left: 4%; /* some padding on the left */
+    color: #fff; /* darker gray color for answers */
+}
+
+.faq-answer p {
+    margin-bottom: 10px; /* some margin between paragraphs */
+}
+
 
 
 #canvas1 {

@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 outputDiv.classList.remove('border-danger');
             }
-            outputLabel.innerText = ""
+            outputLabel.innerText = `Generated Text ${generatedText.split(" ").length}/${length} words`
             outputDiv.textContent = generatedText;
         } else if (radioToFile.checked) {
             var data = generatedText,

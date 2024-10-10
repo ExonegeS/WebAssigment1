@@ -69,7 +69,21 @@
     margin-bottom: 10px; /* some margin between paragraphs */
 }
 
+#contactUsForm {
+    max-width: 500px;
+    width: 90%;
+    background-color: #fff;
+    padding: 3px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
 
+.contact-form-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 40px;
+}
 
 #canvas1 {
     position:fixed;

@@ -39,23 +39,30 @@
 }
 
 .faq-block {
-    background-color: #0d6efd11; /* light gray background */
-    border: 1px solid #0d6efd; /* light gray border */
-    border-radius: 50px; /* rounded corners */
-    padding: 10px; /* some padding inside the block */
-    margin-bottom: 20px; /* some margin between blocks */
 }
 
 .faq-question {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff; /* white border */
+    border-radius: 50px; /* rounded corners */
+    cursor: pointer;
     font-weight: bold; /* make question headings bold */
-    color: rgb(188, 188, 46);  /* blue color for question headings */
+    color: #dda500; /* bright yellow for question headings */
     padding: 5px;
     padding-left: 2%; /* some padding on the left */
 }
-
 .faq-answer {
     padding-left: 4%; /* some padding on the left */
     color: #fff; /* darker gray color for answers */
+    transition: opacity .5s, max-height .3s; /* adjust the duration as needed */
+    overflow: hidden;
+    max-height: 500px; /* set a maximum height for the transition */
+}
+.collapsed {
+    opacity: 0;
+    max-height: 0;
+    border: 0;
+    margin: 0;
 }
 
 .faq-answer p {

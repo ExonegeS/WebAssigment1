@@ -1,7 +1,9 @@
 let intervalId;
+const body = document.getElementsByTagName('body')[0];
+let bgInterval;
 
 function showContactMe() {
-    let parent = document.getElementsByTagName('body')[0];
+    let parent = body;
 
     const contactUsForm = document.createElement('form');
     // Create the overlay and form container
@@ -73,4 +75,19 @@ function showContactMe() {
     
     updateDateTime();
     intervalId = setInterval(updateDateTime, 1000); // Update every 1 second
+}
+
+function changeBg() {
+    // toggle interval
+    if (bgInterval) {
+        clearInterval(bgInterval);
+        bgInterval = null;
+        document.getElementById("canvas1").style.background = `` 
+    } else {
+        bgInterval = setInterval(() => {
+            document.getElementById("canvas1").style.background = `hsl(${Date.now()/10%360}, 50%,50%)` 
+        });
+    }
+        
+
 }

@@ -71,7 +71,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="custom-control-label" for="radioToText">Output result to text</label>
-                            <input type="radio" id="radioToText" name="outputRadio" class="custom-control-input">
+                            <input type="radio" id="radioToText" name="outputRadio" class="custom-control-input" checked>
                             <label class="custom-control-label" for="radioToFile">Output result to file</label>
                             <input type="radio" id="radioToFile" name="outputRadio" class="custom-control-input">
                         </div>
@@ -79,7 +79,7 @@
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <h2>Generated Text</h2>
+                    <h2 id="outputLabel">Generated Text</h2>
                     <div id="outputText" class="card border p-3 min-vh-100"></div>
                 </div>
             </div>

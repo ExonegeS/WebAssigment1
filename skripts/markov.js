@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const form = document.getElementById('markovForm');
     const outputDiv = document.getElementById('outputText');
+    const outputLabel = document.getElementById('outputLabel');
     const inputText = document.getElementById('inputText');
     const inputFile = document.getElementById('inputFile');
     const removeFile = document.getElementById('rmv1');
@@ -44,6 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // check radioToText and radioToFile. 
         if (radioToText.checked) {
+            if (generatedText.split(" ").length != length) {
+                outputDiv.classList.add('border-danger');
+            } else {
+                outputDiv.classList.remove('border-danger');
+            }
+            outputLabel.innerText = ""
             outputDiv.textContent = generatedText;
         } else if (radioToFile.checked) {
             var data = generatedText,
@@ -95,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
             result = currentState;
             currentState = currentState.split(' ').slice(-order).join(' ');
         }
-
-        for (let i = 0; i < length - order ; i++) {
+        
+        for (let i = 0; i < length - order + 1 - startingPhrase.value.trim().split(' ').length; i++) {
             const possibleNextWords = markovChain[currentState];
             if (!possibleNextWords) {
                 break;

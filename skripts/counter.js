@@ -4,19 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputFile = document.getElementById('inputFile');
     const removeFileBtn = document.getElementById('rmv1');
 
+    // This 'input' is not called when the len is becoming 0. Fix it so it calls this function even if len becomes zero inputText.addEventListener('input', processInput); 
+    inputText.addEventListener('input', processInput);
     inputText.addEventListener('input', processInput);
     inputFile.addEventListener('change', processInput);
     processInput();
 
 
     inputFile.addEventListener('change', function() {
-        if (this.files.length > 0) {
-            // change inputText bootstrap class text-light to some darker
-            inputText.classList.remove('text-light');
-            inputText.classList.add('text-dark');
-            inputText.disabled = true;
-            processInput();        
-        }
+        inputText.classList.remove('text-light');
+        inputText.classList.add('text-dark');
+        inputText.disabled = true;
+        processInput();
     });
 
     removeFileBtn.addEventListener('click', function() {
@@ -66,11 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function countWords(text) {
-        return text.trim().split(/\s+/).length;
+        return text.length>0?text.trim().split(/\s+/).length:0;
     }
 
     function countLines(text) {
-        return text.split(/\r\n|\r|\n/).length;
+        return text.length>0?text.split(/\r\n|\r|\n/).length:0;
     }
 
     function countSentences(text) {
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function countParagraphs(text) {
-        return text.split(/\n\s*\n/).length;
+        return text.length>0?text.split(/\n\s*\n/).length:0;
     }
 
     function updateResults(results) {

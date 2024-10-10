@@ -3,23 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputText = document.getElementById('inputText');
     const inputFile = document.getElementById('inputFile');
     const removeFileBtn = document.getElementById('rmv1');
-    const radioToText = document.getElementById('radioToText');
-    const radioToFile = document.getElementById('radioToFile');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        processInput();
-    });
+    inputText.addEventListener('input', processInput);
+    inputFile.addEventListener('change', processInput);
+    processInput();
+
 
     inputFile.addEventListener('change', function() {
         if (this.files.length > 0) {
+            // change inputText bootstrap class text-light to some darker
+            inputText.classList.remove('text-light');
+            inputText.classList.add('text-dark');
             inputText.disabled = true;
+            processInput();        
         }
     });
 
     removeFileBtn.addEventListener('click', function() {
         inputFile.value = '';
         inputText.disabled = false;
+        inputText.classList.remove('text-dark');
+        inputText.classList.add('text-light');
+        processInput();    
     });
 
     function processInput() {
@@ -58,19 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             avgWordsPerSentence,
             avgCharsPerWord
         });
-
-        if (radioToFile.checked) {
-            downloadResults({
-                wordCount,
-                charCountWithSpaces,
-                charCountWithoutSpaces,
-                lineCount,
-                sentenceCount,
-                paragraphCount,
-                avgWordsPerSentence,
-                avgCharsPerWord
-            });
-        }
     }
 
     function countWords(text) {

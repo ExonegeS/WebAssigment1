@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 outputDiv.classList.remove('border-danger');
             }
             outputLabel.innerText = `Generated Text ${generatedText.split(" ").length}/${length} words`
-            outputDiv.textContent = generatedText;
+            outputDiv.textContent = "";
+            animateText(outputDiv, generatedText, 1000 / length)
         } else if (radioToFile.checked) {
             var data = generatedText,
                 fileName = "my-download.txt";

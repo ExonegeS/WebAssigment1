@@ -102,3 +102,47 @@
     z-index: 1;
     background: #191919;
 }
+
+#loading-0 {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: #dda500;
+    width: 100px;
+    height: 100px;
+    transition: width 1s, height 1s;
+}
+
+#loading-1 {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: #dda500;
+    width: 100px;
+    height: 300px;
+    transition: width .5s, height .5s;
+}
+
+#loading-2 {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: #dda500;
+    width: 100px;
+    height: 200px;
+    transition: width .5s, height .5s;
+}
+
+#loading-3 {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: #dda500;
+    width: 100px;
+    height: 400px;
+    transition: width .5s, height .5s;
+}

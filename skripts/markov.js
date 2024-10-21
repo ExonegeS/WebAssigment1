@@ -13,7 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     form.addEventListener('submit', function(e) {
+
+
         e.preventDefault();
+        toggleLoading()
+
+        setTimeout(toggleLoading, 5000)
 
         const chainOrder = parseInt(document.getElementById('chainOrder').value);
         const outputLength = parseInt(document.getElementById('outputLength').value);

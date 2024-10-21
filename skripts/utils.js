@@ -201,3 +201,22 @@ function isPrime(a) {
     }
     return true;
 }
+
+let loading = false
+const loadingElement = document.createElement("div")
+let loadIntervalId
+loadingElement.id = 'loading-3';
+function toggleLoading() {
+    loading = ! loading
+    i = 0;
+    console.log(loadIntervalId)
+    if (loading) {loadIntervalId = setInterval(() => {
+        loadingElement.id = `loading-${i%4}`
+        i++
+    }, 1000)
+        document.getElementsByTagName('body')[0].appendChild(loadingElement)
+    } else {
+        clearInterval(loadIntervalId)
+        loadingElement.remove()
+    }
+}

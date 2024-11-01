@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="content-wrapper">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg nav-dark">
             <div class="container">
                 <a class="navbar-brand" href="./">
                     <img src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="TextPro Logo" height="40" class="d-inline-block align-top logo">
@@ -34,6 +34,13 @@
                         <li class="nav-item">
                             <script src="./skripts/utils.js"></script>
                             <a class="nav-link" onclick="showContactMe();">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <script src="skripts/auth.js"></script>
+                            <a class="nav-link" id="loginBtn" onclick="showLoginModal();">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="logoutBtn" style="display: none;" onclick="logout();">Logout</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="themeToggleBtn" onclick="toggleTheme();">Switch Theme</a>

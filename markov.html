@@ -6,37 +6,40 @@
     <title>Markov Chain Generator - Process Meow</title>
     <link rel="icon" type="image/webp" sizes="16x16" href="src/tumblr_ndbp92G3n31qhccbco4_250.webp">
     <link href="./bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" id="themeStylesheet">
     <script src="./bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div class="content-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg nav-dark">
             <div class="container">
-            <a class="navbar-brand" href="./">
-                <img src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="TextPro Logo" height="40" class="d-inline-block align-top logo">
-                Process me<span class="text-danger">ow</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="counter.html">Counter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="markov.html">Markov</a>
-                    </li>
-                    <li class="nav-item">
-                        <script src="./skripts/utils.js"></script>
-                        <a class="nav-link" onclick="showContactMe();">Contact</a>
-                    </li>
-                </ul>
-            </div>
+                <a class="navbar-brand" href="./">
+                    <img src="src/tumblr_ndbos8REDU1qhccbco10_400.webp" alt="TextPro Logo" height="40" class="d-inline-block align-top logo">
+                    Process me<span class="text-danger">ow</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="counter.html">Counter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="markov.html">Markov</a>
+                        </li>
+                        <li class="nav-item">
+                            <script src="./skripts/utils.js"></script>
+                            <a class="nav-link" onclick="showContactMe();">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="themeToggleBtn" onclick="toggleTheme();">Switch Theme</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 

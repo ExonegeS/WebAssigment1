@@ -3,19 +3,18 @@
     margin: 0; 
     padding: 0; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    color: #212529;
+    color: #c5c5c5; 
     text-decoration: none;
 }
 
 .navbar {
-    background-color: #f8f9fa;
-    color: #212529;
+    background-color: #212529;
 }
 .nav-link {
-    color: rgba(0,0,0,.55);
+    color: rgba(255,255,255,.55);
 }
 .nav-link:hover {
-    color: rgba(0,0,0,1);
+    color: rgba(255,255,255,1);
 }
 .collapsed {
     opacity: 1 !important;
@@ -29,10 +28,8 @@
     background-color: rgba(25, 25, 25, 0);
 }
 .navbar-toggler-icon {
-    background-image: url("./src/burger.svg");
+    background-image: url("./src/burger-dark.svg");
 }
-
-
 
 .logo {
     transition: .7s cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -58,20 +55,13 @@
 
 
 .card {
-    background-color: rgba(248, 249, 250, 0.6);
+    background-color: rgba(25, 25, 25, 0.6);
 }
 
 
-
-
-
-
-
-
-
 .faq-question {
-    background-color: rgba(248, 249, 250, 0.5);
-    border: 1px solid #212529; /* white border */
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid #fff; /* white border */
     border-radius: 50px; /* rounded corners */
     cursor: pointer;
     font-weight: bold; /* make question headings bold */
@@ -81,7 +71,7 @@
 }
 .faq-answer {
     padding-left: 4%; /* some padding on the left */
-    color: #212529 !important;
+    color: #fff !important;
     transition: opacity .5s, max-height .3s; /* adjust the duration as needed */
     overflow: hidden;
     max-height: 500px; /* set a maximum height for the transition */
@@ -93,23 +83,22 @@
     margin: 0;
 }
 
-.faq-hidden {
-    background-color: #f0f; /* bright yellow for question headings */
-    position: fixed;
-}
 .faq-answer p {
     margin-bottom: 10px; /* some margin between paragraphs */
 }
 
+
+
+
 .form-control {
-    background-color: #f8f9fa !important;
-    color: #212529 !important;
+    background-color: #212529 !important;
+    color: #f8f9fa !important;
 }
 
 #contactUsForm {
     max-width: 500px;
     width: 90%;
-    background-color: #fff;
+    background-color: #212529;
     padding: 3px;
     border-radius: 50px;
     box-shadow: 0 0 10px rgba(0,0,0,.1);
@@ -128,7 +117,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: radial-gradient(#dcdcdc, #dfdfdf);
+    background: radial-gradient(#2e2e2e, #191919);
 }
 #canvas2 {
     position:fixed;
@@ -142,7 +131,7 @@
 
 #loading-0 {
     position: fixed;
-    top: 90%; left: 90%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
     background-color: #dda500;
@@ -153,7 +142,7 @@
 
 #loading-1 {
     position: fixed;
-    top: 90%; left: 90%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
     background-color: #dda500;
@@ -164,7 +153,7 @@
 
 #loading-2 {
     position: fixed;
-    top: 90%; left: 90%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
     background-color: #dda500;
@@ -175,7 +164,7 @@
 
 #loading-3 {
     position: fixed;
-    top: 90%; left: 90%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
     background-color: #dda500;

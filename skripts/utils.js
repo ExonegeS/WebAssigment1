@@ -5,6 +5,9 @@ let username = "Anonymys";
 const audio = new Audio('../src/discord-call-sound.mp3');
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    updateTheme();
+
     const navbar = document.querySelector('.navbar');
     const navbarCollapse = navbar.querySelector('.navbar-collapse');
 
@@ -72,7 +75,7 @@ function showContactMe() {
         document.querySelector('.fw-bold.text-center').innerText = formattedDate;
     }
     contactUsForm.innerHTML = `
-        <div class='contact-form-wrap border border-light bg-dark p-5'>
+        <div class='contact-form-wrap border border-light form-control p-5'>
             <div class='col-md-6 mb-3'>
                 <label class='form-label fs-7 fw-bold' for='field-name'>Your Name</label>
                 <input class='form-control bg-transparent border-light text-reset' id='field-name' name='name' required='' type='text' placeholder='Enter Name'/>
@@ -218,5 +221,27 @@ function toggleLoading() {
     } else {
         clearInterval(loadIntervalId)
         loadingElement.remove()
+    }
+}
+
+
+let theme = localStorage.getItem('theme') || 'light';
+
+function toggleTheme() {
+    if (theme === 'light') {
+        theme = 'dark';
+    } else {
+        theme = 'light';
+    }
+    localStorage.setItem('theme', theme);
+    updateTheme();
+}
+
+function updateTheme() {
+    const themeStylesheet = document.getElementById('themeStylesheet');
+    if (theme === 'light') {
+        themeStylesheet.href = './styles.css';
+    } else {
+        themeStylesheet.href = './dark-styles.css';
     }
 }

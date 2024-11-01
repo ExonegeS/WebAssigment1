@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     section.classList.add(".faq-hidden")
                     for (var i = 0; i < 1; i++) {
                         var child = section.children[i];
-                        child.style.backgroundColor = "rgba(0,0,0,.1)"
+                        child.style.backgroundColor = "rgba(255,0,0,.1)"
                     }
                 }
             }

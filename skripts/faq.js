@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const filterInput = document.getElementById('faq-filter');
     FAQ = document.getElementById('faq');
-
-    if (FAQ.classList.contains("faq-block")) {
-        iterateFAQblock(FAQ);
+    if (FAQ) {
+        if (FAQ.classList.contains("faq-block")) {
+            iterateFAQblock(FAQ);
+        }
+    } else {
+        return
     }
 
     // Load filter from local storage
@@ -20,10 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
         filterFAQs(FAQ.children, filterValue);
     });
 
-    function filterFAQs(faqSections, filterValue) {
+    function filterFAQs(faqSections, filterValue, level=0) {
         Array.from(faqSections).forEach(section => {
             if (section.classList.contains("faq-block")) {
-                filterFAQs(section.children, filterValue);
+                filterFAQs(section.children, filterValue, level+1);
+                
             }
             const question = section.querySelector('.faq-question');
             if (question) {
@@ -33,12 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     for (var i = 0; i < 1; i++) {
                         var child = section.children[i];
                         child.style.backgroundColor = ""
+                        child.classList.remove('faq-collapsed');
                     }
                 } else {
                     section.classList.add(".faq-hidden")
                     for (var i = 0; i < 1; i++) {
                         var child = section.children[i];
-                        child.style.backgroundColor = "rgba(255,0,0,.1)"
+                        if (level > 0) {
+                            child.classList.add('faq-collapsed');
+                        }
                     }
                 }
             }

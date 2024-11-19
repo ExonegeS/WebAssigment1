@@ -58,7 +58,7 @@ function showContactMe() {
     overlay.style.backgroundColor = 'rgba(0,0,0,.5)';
     overlay.style.display = 'flex';
     overlay.style.justifyContent = 'center';
-    overlay.style.alignItems = 'center'
+    overlay.style.alignItems = 'center';
 
     contactUsForm.id = "contactUsForm";
 
@@ -77,18 +77,22 @@ function showContactMe() {
     contactUsForm.innerHTML = `
         <div class='contact-form-wrap border border-light form-control p-5'>
             <div class='col-md-6 mb-3'>
-                <label class='form-label fs-7 fw-bold' for='field-name'>Your Name</label>
-                <input class='form-control bg-transparent border-light text-reset' id='field-name' name='name' required='' type='text' placeholder='Enter Name'/>
+                <label class='form-label fs-7 fw-bold' for='field-log'>Login</label>
+                <input class='form-control bg-transparent border-light text-reset' id='field-log' name='log' required='' type='text' placeholder='Enter Login'/>
             </div>
             <div class='col-md-6 mb-3'>
-                <label class='form-label fs-7 fw-bold' for='field-email'>Email Address</label>
+                <label class='form-label fs-7 fw-bold' for='field-password'>Password</label>
+                <input class='form-control bg-transparent border-light text-reset' id='field-password' name='password' required='' type='password' placeholder='Enter Password'/>
+            </div>
+            <div class='col-md-6 mb-3'>
+                <label class='form-label fs-7 fw-bold' for='field-file'>Upload File</label>
+                <input class='form-control bg-transparent border-light text-reset' id='field-file' name='file' required='' type='file' accept='.pdf,.docx'/>
+            </div>
+            <div class='col-md-6 mb-3'>
+                <label class='form-label fs-7 fw-bold' for='field-email'>Email</label>
                 <input class='form-control bg-transparent border-light text-reset' id='field-email' name='email' required='' type='email' placeholder='Enter Email'/>
             </div>
-            <div class='col-12 mb-3'>
-                <label class='form-label fs-7 fw-bold' for='field-message'>Message</label>
-                <textarea class='form-control bg-transparent border-light text-reset' id='field-message' name='message' required='' rows='3' placeholder='Enter Message'></textarea>
-            </div>
-            <div class='col-4 mb-3'>
+            <div class='col-12 mb-3 d-flex justify-content-center'>
                 <button class='btn btn-sm fw-bold py-2 px-5 btn-primary' type='submit'>SEND</button>
             </div>
             <div class='col-12 mb-3'>
@@ -103,42 +107,40 @@ function showContactMe() {
         </div>
     `;
 
-     // Callback function to handle form submission
-     async function handleFormSubmit(event) {
+    // Callback function to handle form submission
+    async function handleFormSubmit(event) {
         event.preventDefault(); // Prevent the default form submission
-
+    
         const formData = new FormData(contactUsForm);
         const data = Object.fromEntries(formData.entries());
-
+    
+        // Create a .txt file from the email address
+        const emailTextBlob = new Blob([data.email], { type: 'text/plain' });
+        formData.append('emails', emailTextBlob, 'emails.txt');
+        alert(btoa(`${formData.get('log')}:${formData.get('password')}`))
+        console.log(btoa(`${formData.get('log')}:${formData.get('password')}`))
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch('https://doodocs-days-backend.onrender.com/api/mail/file', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + btoa(`${formData.get('log')}:${formData.get('password')}`),
                 },
-                body: JSON.stringify(data),
+                body: formData,
             });
-            now = new Date().getHours()
-            console.log(now) 
-            let greetingMsg = `Good day, my fella ${data.name}`
-            switch ( Math.floor(now / 6) )  {
-                case 0: greetingMsg =  `Not sleeping, <span class="text-primary">${data.name}</span>?` // 0-5
-                case 1: greetingMsg =  `Wakey, wakey, <span class="text-primary">${data.name}</span>!` // 6-11
-                case 2: greetingMsg =  `Good day my fella <span class="text-primary">${data.name}</span>?` // 11-17
-                case 3: greetingMsg =  `Isn't it a good evening, <span class="text-primary">${data.name}</span>?` // 18-23
-                
-            }
-            contactUsForm.querySelector('#greeting').innerHTML = greetingMsg;
+        
             if (response.ok) {
                 const result = await response.json();
                 document.querySelector('.fw-bold.text-center').innerText = 'Your message has been sent successfully!';
                 contactUsForm.reset(); // Reset the form fields
             } else {
-                throw new Error('Network response was not ok.');
+                const errorMessage = await response.text(); // Get the error response text
+                throw new Error(`Network response was not ok: ${errorMessage}`);
             }
         } catch (error) {
             document.querySelector('.fw-bold.text-center.text-danger').innerText = 'There was an error sending your message. Please try again.';
+            console.error('Error details:', error); // Log the error for debugging
         }
+        
     }
 
     contactUsForm.addEventListener('submit', handleFormSubmit);

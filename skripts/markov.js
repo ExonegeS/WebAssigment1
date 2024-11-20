@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             outputLabel.innerText = `Generated Text ${generatedText.split(" ").length}/${length} words`
             outputDiv.textContent = "";
-            animateText(outputDiv, generatedText, 1000 / length)
+            animateText(outputDiv, generatedText, 1/100)
         } else if (radioToFile.checked) {
             var data = generatedText,
                 fileName = "my-download.txt";

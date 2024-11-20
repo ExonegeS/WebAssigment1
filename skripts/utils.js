@@ -181,16 +181,19 @@ function changeBg() {
     }
 }
 
-function animateText(element, text='Lorem ipsum dummy text blabla.', speed=50, timeoutId) {
+function animateText(element, text='Lorem ipsum dummy text blabla.', baseSpeed=100, timeoutId) {
     var i = 0;
-    console.log(
-        clearTimeout(timeoutId)
-    )
+    clearTimeout(timeoutId);
     typeWriter();
+
     function typeWriter() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
+            let chunkSize = Math.max(1, Math.min(Math.floor(text.length / 100), 100));
+            let chunk = text.substring(i, i + chunkSize);
+            element.innerHTML += chunk;
+            i += chunkSize;
+
+            let speed = baseSpeed / Math.max(1, text.length / 50);
             return setTimeout(typeWriter, speed);
         }
     }
